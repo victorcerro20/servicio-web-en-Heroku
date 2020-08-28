@@ -245,6 +245,37 @@ Para implementar el proyecto primero debemos crear una aplicación Heroku.
 heroku apps:create web_app_iris
 ```
 
+## Archivo requirements.txt
+
+Este es el primer punto de entrada al programa. Instalará todas las dependencias necesarias para ejecutar su Código. ```requirements.txt``` le dirá a heroku que este proyecto requerirá todas estas librerias para ejecutar correctamente la aplicación.
+
+## Procfile
+
+Heroku requiere que Procfile esté presente en el directorio raíz de su aplicación. Le dirá a Heroku cómo ejecutar la aplicación. Asegúrese de que sea un archivo simple sin extensión.
+La parte a la izquierda de los dos puntos es el tipo de proceso y la parte a la derecha es el comando a ejecutar para iniciar ese proceso. En esto, podemos decir en qué puerto se debe implementar el código y puede iniciar y detener estos procesos.
+
+```python
+web: gunicorn script:app
+```
+
+Este archivo le dice a heroku que queremos usar el proceso web con el comando gunicorn y el nombre de la aplicación.
+
+
+## Implementar en Heroku
+
+Asegúrese de que el archivo ```Procfile``` y el ```rerequirementsisito.txt``` estén presentes en el directorio raíz de su aplicación. Posteriormente procedemos a crear el repositorio en github y crear la rama ```deploy``` para conectar el despliegue automático desde GitHub.
+
+Una vez creado el repositorio en GitHub creamos la rama ```deploy```.
+
+
+
+
+En el dashboard principal de la aplicación HEROKU veremos desplegada la aplicación:
+
+![app](images/artefacto.PNG)
+
+
+Entramos dentro 
 
 
 
