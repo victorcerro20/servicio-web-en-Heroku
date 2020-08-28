@@ -277,6 +277,7 @@ En el dashboard principal de la aplicación HEROKU veremos desplegada la aplicac
 Entramos dentro 
 
 
-
+git branch deploy
+git checkout deploy
 
 puedan desplegar de forma exitosa este tipo de aplicaciones
