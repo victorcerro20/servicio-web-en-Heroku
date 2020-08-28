@@ -269,7 +269,6 @@ Una vez creado el repositorio en GitHub creamos la rama ```deploy```.
 
 
 
-
 En el dashboard principal de la aplicación HEROKU veremos desplegada la aplicación:
 
 ![app](images/artefacto.PNG)
