@@ -274,6 +274,7 @@ En el dashboard principal de la aplicación HEROKU veremos desplegada la aplicac
 ![app](images/artefacto.PNG)
 
 
+
 Entramos dentro 
 
 
