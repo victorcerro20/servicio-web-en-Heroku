@@ -268,17 +268,22 @@ Asegúrese de que el archivo ```Procfile``` y el ```rerequirementsisito.txt``` e
 Una vez creado el repositorio en GitHub creamos la rama ```deploy```.
 
 
-
 En el dashboard principal de la aplicación HEROKU veremos desplegada la aplicación:
 
 ![app](images/artefacto.PNG)
 
-
-
 Entramos dentro 
 
-
+```python
 git branch deploy
 git checkout deploy
+git push
+```
+
+Una vez creada la rama ```deploy```vamos a configurar el despliegue automático a Heroku desde GitHub:
+
+![app](images/artefacto.PNG)
+
+
 
 puedan desplegar de forma exitosa este tipo de aplicaciones
