@@ -1,10 +1,10 @@
 # Puesta en Producción de un modelo de aprendizaje automático con Flask y Heroku
 
+![Portada](images/portada1.png)
 
+La creación de un proyecto de aprendizaje automático en un jupyter notebook ejecutaándose en local para unos datos de entrada controlados es una cosa, pero implementar el modelo como una aplicación web y su posterior puesta en producción como servicio para usuarios en la red es otra cosa muy distinta.
 
-La creación de un proyecto de aprendizaje automático en un jupyter notebook ejecutandose en local para unos datos de entrada controlados es una cosa, pero implementar el modelo como una aplicación web y su posterior puesta en producción como servicio para usuarios en la red es otra cosa muy distinta.
-
-Para que un producto basado en el aprendizaje automático tenga éxito, es necesario crear servicios que otros equipos puedan usar o un producto donde los usuarios puedan interactuar. Para ello, el objetivo final es brindar el modelo como un servicio, basandose en un concepto llamado API. Una API es la forma en que los sistemas informáticos se comunican entre sí, actuando como un agente que lleva la información del usuario al servidor y luego nuevamente del servidor al usuario devolviendo la respuesta. Flask proporciona esa capacidad, actuando como una API entre su modelo y el archivo HTML.
+Para que un producto basado en el aprendizaje automático tenga éxito, es necesario crear servicios que otros equipos puedan usar o un producto donde los usuarios puedan interactuar. Para ello, el objetivo final es brindar el modelo como un servicio, basándose en un concepto llamado API. Una API es la forma en que los sistemas informáticos se comunican entre sí, actuando como un agente que lleva la información del usuario al servidor y luego nuevamente del servidor al usuario devolviendo la respuesta. Flask proporciona esa capacidad, actuando como una API entre su modelo y el archivo HTML.
 
 Por otra parte utilizaremos Heroku como plataforma en la nube para crear nuestro servicio. Heroku es uno de los PaaS más utilizados en la actualidad en entornos empresariales por su fuerte enfoque en resolver el despliegue de una aplicación. Ademas te permite manejar los servidores y sus configuraciones, escalamiento y la administración. A Heroku solo le dices qué lenguaje de backend estás utilizando (Python, Java, PHP, NodeJS…) o qué base de datos vas a utilizar y te preocupas únicamente por el desarrollo de tu aplicación. Heroku es gratuito para aplicaciones de poco consumo y posteriormente hablaremos de como crear una cuenta gratuita para desplegar nuestro servicio.
 
@@ -52,7 +52,7 @@ En el directorio de su proyecto, comencemos creando un virtualenv:
 python -m venv venv/
 ```
 
-Y activémoslo con el sourcecomando:
+Y activemos con el el entorno virtual:
 ```python
 \env\Scripts\activate.bat
 ```
@@ -61,7 +61,7 @@ Instalamos todas las dependencias del proyecto:
 ```python
 pip install -r requirements.txt
 ```
-Con esto ya tendriamos preparado todo el entorno para el desarrollo de nuestra aplicación.
+Con esto ya tendríamos preparado todo el entorno para el desarrollo de nuestra aplicación.
 
 ## Implementación y entrenamiento del Modelo.
 
@@ -81,7 +81,7 @@ Esta clasificación será el resultado de la inferencia de unos datos de entrada
 Puede encontrar más información sobre el dataset en el siguiente enlace: https://archive.ics.uci.edu/ml/datasets/iris
 
 
-En nuestro caso utilizaremos el módulo ```datasets``` de la libreria ```sklearn`` y lo dividimos entre conjuntos de entrenamiento y test :
+En nuestro caso utilizaremos el módulo ```datasets``` de la librería ```sklearn`` y lo dividimos entre conjuntos de entrenamiento y test:
 
 ```python
 from sklearn.datasets import load_iris
@@ -91,7 +91,7 @@ X, y = load_iris(return_X_y=True)
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, stratify=y)
 ```
 
-Vamos a utilizar como modelo un ```RandomForestClassifier()``` entrenado con el subconjunto de entrenamiento y vlaidado con el conjunto de test
+Vamos a utilizar como modelo un ```RandomForestClassifier()``` entrenado con el subconjunto de entrenamiento y validado con el conjunto de test.
 
 ```python
 X, y = load_iris(return_X_y=True)
@@ -110,7 +110,7 @@ filename = 'checkpoints/model.pkl'
 pickle.dump(clf, open(filename, 'wb'))
 ```
 
-No esta de mal, validar estos pasos cargando el modelo y hacer una nueva predicción con el mismo conjunto de test para validar los resultados
+No está de mal, validar estos pasos cargando el modelo y hacer una nueva predicción con el mismo conjunto de test para validar los resultados
 
 ```python
 loaded_model = pickle.load(open(filename, 'rb'))
@@ -146,7 +146,7 @@ def main():
 if __name__=="__main__":
     app.run()
 ```
-Explicando las lineas más importantes tenemos:
+Explicando las líneas más importantes tenemos:
 
 ```python
 app=Flask(__name__)
@@ -159,7 +159,7 @@ Aquí, estamos asignando el constructor Flask a una variable que necesitamos par
 ```app.route()``` es un decorador en Python. En Flask, cada función se activará cuando vaya a una página específica, todo el tráfico en esta URL invocará la función ```main()```.
 
 
-Con esto bastaria para realizar su primera aplicación Flask. En nuestro caso necesitamos que la función ```main()``` fuera una función que desplegará el modelo para hacer las predicciones de los inputs recibidos por el método POST. Para ello, utilizamos una función definida como ```result()```que se encargará de recojer los inputs de entrada al modelo, transformalos a una lista acorde a lo esperado por el modelo para posteriormente llamar a la función ```value_predictor()```donde se realizarán las predicciones. Una vez tengamos los resultados, se mostraran en el template ```result.html``` como podemos ver más adelante.
+Con esto bastaría para realizar su primera aplicación Flask. En nuestro caso necesitamos que la función ```main()``` fuera una función que desplegará el modelo para hacer las predicciones de los inputs recibidos por el método POST. Para ello, utilizamos una función definida como ```result()```que se encargará de recoger los inputs de entrada al modelo, transformarlos a una lista acorde a lo esperado por el modelo para posteriormente llamar a la función ```value_predictor()```donde se realizarán las predicciones. Una vez tengamos los resultados, se mostrarán en el template ```result.html``` como podemos ver más adelante.
 
 ```python
 #importing libraries
@@ -210,7 +210,7 @@ if __name__=="__main__":
     app.run(port=5001)
 ```
 
-Como particularidad, podemos observar en el código siguiente que disponemos de dos rutas, ```/index``` y ```result```, la primera se lanzará nada más se depliegue la API y es la encargada de recoger los datos a a partir del template ```ìndex.html```:
+Como particularidad, podemos observar en el código siguiente que disponemos de dos rutas, ```/index``` y ```result```, la primera se lanzará nada más se despliegue la API y es la encargada de recoger los datos a a partir del template ```index.html```:
 
 ![index_html](images/index_html.PNG)
 
@@ -245,11 +245,11 @@ Para implementar el proyecto primero debemos crear una aplicación Heroku.
 heroku apps:create web_app_iris
 ```
 
-## Archivo requirements.txt
+### Archivo requirements.txt
 
 Este es el primer punto de entrada al programa. Instalará todas las dependencias necesarias para ejecutar su Código. ```requirements.txt``` le dirá a heroku que este proyecto requerirá todas estas librerias para ejecutar correctamente la aplicación.
 
-## Procfile
+### Procfile
 
 Heroku requiere que Procfile esté presente en el directorio raíz de su aplicación. Le dirá a Heroku cómo ejecutar la aplicación. Asegúrese de que sea un archivo simple sin extensión.
 La parte a la izquierda de los dos puntos es el tipo de proceso y la parte a la derecha es el comando a ejecutar para iniciar ese proceso. En esto, podemos decir en qué puerto se debe implementar el código y puede iniciar y detener estos procesos.
@@ -263,7 +263,7 @@ Este archivo le dice a heroku que queremos usar el proceso web con el comando gu
 
 ## Implementar en Heroku
 
-Asegúrese de que el archivo ```Procfile``` y el ```rerequirementsisito.txt``` estén presentes en el directorio raíz de su aplicación. Posteriormente procedemos a crear el repositorio en github y crear la rama ```deploy``` para conectar el despliegue automático desde GitHub.
+Asegúrese de que el archivo ```Procfile``` y el ```requirements.txt``` estén presentes en el directorio raíz de su aplicación. Posteriormente procedemos a crear el repositorio en github y crear la rama ```deploy``` para conectar el despliegue automático desde GitHub.
 
 Una vez creado el repositorio en GitHub creamos la rama ```deploy```.
 
@@ -292,7 +292,7 @@ Una vez conectado el repositorio, seleccionamos la rama ```deploy```y habilitamo
 
 ![enable_deploy](images/enable_deploy.PNG)
 
-Con esto ya podriamos desplegar nuestro servicio automáticamente cada vez que se haga un ```push``` de la rama ```deploy```. Para ello, vamos a comprobarlo realizando el ```push```y situandonos en la pestaña de _Activity_ del proyecto Heroku para ver el estado del despliegue:
+Con esto ya podemos desplegar nuestro servicio automáticamente cada vez que se haga un ```push``` de la rama ```deploy```. Para ello, vamos a comprobarlo realizando el ```push```y situándonos en la pestaña de _Activity_ del proyecto Heroku para ver el estado del despliegue:
 
 ![despliegue_on](images/despliegue_on.PNG)
 
@@ -301,7 +301,7 @@ Una vez completado el despliegue, ya tendremos acceso a la app desde el botón _
 ![completado](images/completado.PNG)
 
 
-Con ello, ya tendriamos acceso a nuestra aplicación desplegada como un servicio dentro de Heroku:
+Con ello, ya tendríamos acceso a nuestra aplicación desplegada como un servicio dentro de Heroku:
 
 ![comwebpletado](images/web.PNG)
 
@@ -309,7 +309,9 @@ Con ello, ya tendriamos acceso a nuestra aplicación desplegada como un servicio
 # Conclusiones
 
 
-Con este artículo, mi intención ha sido que puedan desplegar de forma exitosa este tipo de aplicaciones de manera sencilla y robusta para poder provar todas sus aplicaciones sin tener que preocuparse de toda la infraestructura IT de crear un servicio desde cero.
+Con este artículo, mi intención ha sido que puedan desplegar de forma exitosa este tipo de aplicaciones de manera sencilla y robusta para poder probar todas sus aplicaciones sin tener que preocuparse de toda la infraestructura IT de crear un servicio desde cero.
 
-Espero que os haya sido de utilidad y que lo tengais en cuenta como una herramienta más para el desarrollo de vuestras aplicaciones basadas en aprendizaje automático.
+Espero que os haya sido de utilidad y que lo tengáis en cuenta como una herramienta más para el desarrollo de vuestras aplicaciones basadas en aprendizaje automático.
+
+
 
