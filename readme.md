@@ -280,9 +280,23 @@ git checkout deploy
 git push
 ```
 
-Una vez creada la rama ```deploy```vamos a configurar el despliegue automático a Heroku desde GitHub:
+Una vez creada la rama ```deploy```vamos a configurar el despliegue automático a Heroku desde GitHub, para ello entramos dentro del proyecto y seleccionamos la ventana _Deploy_:
 
-![app](images/artefacto.PNG)
+![app](images/deploy.PNG)
+
+Seleccionamos el método de despliegue como GitHub y conectamos el repositorio del proyecto en GitHub:
+
+![app](images/method.PNG)
+
+Una vez conectado el repositorio, seleccionamos la rama ```deploy```y habilitamos el despliegue automático:
+
+![app](images/enable_deploy.PNG)
+
+Con esto ya podriamos desplegar nuestro servicio automáticamente cada vez que se haga un ```push``` de la rama ```deploy```. Para ello, vamos a comprobarlo realizando el ```push```y situandonos en la pestaña de _Activity_ del proyecto Heroku para ver el estado del despliegue:
+
+
+
+
 
 
 
