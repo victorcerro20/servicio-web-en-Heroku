@@ -270,7 +270,7 @@ Una vez creado el repositorio en GitHub creamos la rama ```deploy```.
 
 En el dashboard principal de la aplicación HEROKU veremos desplegada la aplicación:
 
-![app](images/artefacto.PNG)
+![artefacto](images/artefacto.PNG)
 
 Entramos dentro 
 
@@ -282,22 +282,34 @@ git push
 
 Una vez creada la rama ```deploy```vamos a configurar el despliegue automático a Heroku desde GitHub, para ello entramos dentro del proyecto y seleccionamos la ventana _Deploy_:
 
-![app](images/deploy.PNG)
+![deploy](images/deploy.PNG)
 
 Seleccionamos el método de despliegue como GitHub y conectamos el repositorio del proyecto en GitHub:
 
-![app](images/method.PNG)
+![method](images/method.PNG)
 
 Una vez conectado el repositorio, seleccionamos la rama ```deploy```y habilitamos el despliegue automático:
 
-![app](images/enable_deploy.PNG)
+![enable_deploy](images/enable_deploy.PNG)
 
 Con esto ya podriamos desplegar nuestro servicio automáticamente cada vez que se haga un ```push``` de la rama ```deploy```. Para ello, vamos a comprobarlo realizando el ```push```y situandonos en la pestaña de _Activity_ del proyecto Heroku para ver el estado del despliegue:
 
+![despliegue_on](images/despliegue_on.PNG)
+
+Una vez completado el despliegue, ya tendremos acceso a la app desde el botón _Open app_ situado a la parte de arriba a la derecha:
+
+![completado](images/completado.PNG)
 
 
+Con ello, ya tendriamos acceso a nuestra aplicación desplegada como un servicio dentro de Heroku:
+
+![comwebpletado](images/web.PNG)
 
 
+# Conclusiones
 
 
-puedan desplegar de forma exitosa este tipo de aplicaciones
+Con este artículo, mi intención ha sido que puedan desplegar de forma exitosa este tipo de aplicaciones de manera sencilla y robusta para poder provar todas sus aplicaciones sin tener que preocuparse de toda la infraestructura IT de crear un servicio desde cero.
+
+Espero que os haya sido de utilidad y que lo tengais en cuenta como una herramienta más para el desarrollo de vuestras aplicaciones basadas en aprendizaje automático.
+
