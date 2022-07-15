@@ -29,11 +29,9 @@ def result():
             to_predict_list = list(map(float, to_predict_list))
             result = ValuePredictor(to_predict_list)
             if int(result)==0:
-                prediction='Iris-Setosa'
+                prediction='Pierde partida'
             elif int(result)==1:
-                prediction='Iris-Virginica'
-            elif int(result)==2:
-                prediction='Iris-Versicolour'
+                prediction='Gana partida'
             else:
                 prediction=f'{int(result)} No-definida'
         except ValueError:
