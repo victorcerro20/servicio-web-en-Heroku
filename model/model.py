@@ -11,7 +11,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, stratif
 clf = RandomForestClassifier()
 print(clf.fit(X_train, y_train).score(X_test, y_test))
 
-filename = 'checkpoints/model.pkl'
+filename = 'checkpoints/victor.pkl'
 pickle.dump(clf, open(filename, 'wb'))
 
 loaded_model = pickle.load(open(filename, 'rb'))
